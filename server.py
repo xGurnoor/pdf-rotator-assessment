@@ -2,7 +2,7 @@ from flask import Flask, request
 from PyPDF2 import PdfReader, PdfWriter
 from uuid import uuid4
 
-import io, requests 
+import io, requests, os
 
 app = Flask(__name__)
 
@@ -67,7 +67,8 @@ def test():
 
     # generate (barely) unique ID for the file name
     file_id = uuid4().hex[:10]
-
+    if not os.exists('statis'):
+        os.mkdir('static')
     with open(f'static/{file_id}.pdf', 'wb') as fp:
         writer.write(fp)
 
