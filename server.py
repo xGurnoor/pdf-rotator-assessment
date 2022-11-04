@@ -67,13 +67,13 @@ def test():
 
     # generate (barely) unique ID for the file name
     file_id = uuid4().hex[:10]
-    if not os.exists('statis'):
+    if not os.path.exists('static'):
         os.mkdir('static')
     with open(f'static/{file_id}.pdf', 'wb') as fp:
         writer.write(fp)
 
     
-    return f'Completed succesfully! See the file <a href="http://localhost:8000/static/{file_id}.pdf">here</a>'
+    return f'http://localhost:8000/static/{file_id}.pdf">'
 
 
 app.run(port=8000)
